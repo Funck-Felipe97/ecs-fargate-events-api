@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: local
+
+server:
+  servlet:
+    context-path: /events-api
+  port: 8080
+
+aws:
+  region: us-east-1
+  sqs:
+    queue:
+      products:
+        events: products-events
