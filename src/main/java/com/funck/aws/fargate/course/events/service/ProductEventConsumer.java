@@ -16,7 +16,7 @@ public class ProductEventConsumer {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    @JmsListener(destination = "${aws.sqs.queue.products.events}")
+    @JmsListener(destination = "products-events")
     public void receiveProductEvent(TextMessage message) throws Exception {
         var snsMessage = MAPPER.readValue(message.getText(), SnsMessage.class);
 

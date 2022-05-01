@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
-import org.springframework.jms.config.JmsListenerContainerFactory;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.destination.DynamicDestinationResolver;
 
 import javax.jms.Session;
@@ -37,7 +37,7 @@ public class JmsConfig {
     }
 
     @Bean
-    public JmsListenerContainerFactory jmsListenerContainerFactory(SQSConnectionFactory connectionFactory) {
+    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(SQSConnectionFactory connectionFactory) {
         var jmsListenerContainerFactory = new DefaultJmsListenerContainerFactory();
 
         jmsListenerContainerFactory.setConnectionFactory(connectionFactory);
@@ -46,6 +46,11 @@ public class JmsConfig {
         jmsListenerContainerFactory.setSessionAcknowledgeMode(Session.CLIENT_ACKNOWLEDGE);
 
         return jmsListenerContainerFactory;
+    }
+
+    @Bean
+    public JmsTemplate defaultJmsTemplate(SQSConnectionFactory connectionFactory){
+        return new JmsTemplate(connectionFactory);
     }
 
 }
