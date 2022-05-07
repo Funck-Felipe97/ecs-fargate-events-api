@@ -59,7 +59,7 @@ public class DynamodbConfigLocal {
                 .withCredentials(new DefaultAWSCredentialsProviderChain())
                 .build();
 
-        //createTable(amazonDynamoDB);
+        createTable(amazonDynamoDB);
 
         return amazonDynamoDB;
     }
