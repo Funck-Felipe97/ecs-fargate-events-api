@@ -5,7 +5,7 @@ spring:
 server:
   servlet:
     context-path: /events-api
-  port: 8080
+  port: 8081
 
 aws:
   region: us-east-1
